@@ -29,4 +29,18 @@ class TicketResponseController extends Controller
         return response()->json(['status'=>400,'msg'=>$result->Message()],400,[],JSON_UNESCAPED_UNICODE);
     }
 
+    public function GetAll(Request $request):object
+    {
+        $admins=[];
+        $admin=$request->get('user');
+        if($admin['role']=="user") {
+            $admins = $this->ticketResponseService->GetAllByAdmin($admin['adminId'])->Data();
+        }
+        else {
+            $admins = $this->ticketResponseService->GetAll()->Data();
+        }
+
+        return response()->json(['status'=>200,'data'=>$admins],200,[],JSON_UNESCAPED_UNICODE);
+    }
+
 }

@@ -50,7 +50,7 @@ class AdminManager implements IAdminService
             return new ErrorResult($result);
         }
 
-        if($admin['image']!=null) {
+       if($admin['image']!=null) {
             $admin['image']=Upload::ImageUpload($admin['image'],'uploads/images/user');
         }
 
@@ -215,5 +215,3 @@ class AdminManager implements IAdminService
     }
 
 }
-
-// ssh
