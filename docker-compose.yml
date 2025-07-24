@@ -1,0 +1,90 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: laravel-dev-app
+        container_name: laravel_app_dev
+        restart: unless-stopped
+        working_dir: /var/www
+        volumes:
+            - .:/var/www
+            - ./storage:/var/www/storage
+            - ./bootstrap/cache:/var/www/bootstrap/cache
+        environment:
+            APP_ENV: local
+            APP_DEBUG: true
+            CACHE_DRIVER: file
+            SESSION_DRIVER: file
+        networks:
+            - laravel
+        ports:
+            - "9000:9000"
+        depends_on:
+            - db
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:9000"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
+
+    webserver:
+        image: nginx:alpine
+        container_name: nginx_server_dev
+        restart: unless-stopped
+        ports:
+            - "8090:80"
+        volumes:
+            - .:/var/www
+            - ./nginx:/etc/nginx/conf.d
+            - ./php.ini:/usr/local/etc/php/conf.d/custom.ini # PHP ayarları için
+        networks:
+            - laravel
+        depends_on:
+            - app
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:80"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
+
+    db:
+        image: mysql:5.7
+        container_name: mysql_db_dev
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: ""
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_DATABASE: laravel
+        ports:
+            - "3307:3306"
+        volumes:
+            - dbdata:/var/lib/mysql
+        networks:
+            - laravel
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        restart: unless-stopped
+        environment:
+            PMA_HOST: db
+            PMA_USER: root
+            PMA_PASSWORD: ""
+        ports:
+            - "8085:80"
+        networks:
+            - laravel
+        depends_on:
+            - db
+
+networks:
+    laravel:
+
+volumes:
+    dbdata:
