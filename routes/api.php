@@ -35,10 +35,12 @@ Route::prefix('tickets')->group(function () {
     Route::middleware([JwtVerify::class.':admin,user'])->get('/details', [TicketsController::class,'Get']);
     Route::middleware([JwtVerify::class.':admin,user'])->post('/update', [TicketsController::class,'Update']);
     Route::middleware([JwtVerify::class.':admin'])->post('/status',[TicketsController::class,'StatusUpdate']);
+    Route::middleware([JwtVerify::class.':admin,user'])->post('/update',[TicketsController::class,'Update']);
 });
 
 Route::prefix('ticket-response')->group(function () {
     Route::middleware([JwtVerify::class.':admin'])->post('/create',[TicketResponseController::class,'Add']);
+    Route::middleware([JwtVerify::class.':admin,user'])->get('/list',[TicketResponseController::class,'GetAll']);
 });
 
 
