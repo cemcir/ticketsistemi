@@ -24,7 +24,7 @@ class Mail
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        $mail->setFrom('2021304036@cumhuriyet.edu.tr', 'Mailer');
+        $mail->setFrom('cemcir', 'Mailer');
         $mail->addAddress($receiver, 'Receiver Name');
         $mail->isHTML(true);
         $mail->Subject = 'DUGUN SALONU OTOMASYONU';
