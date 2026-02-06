@@ -17,7 +17,7 @@ class Mail
     try {
         $mail->SMTPDebug = 0;
         $mail->isSMTP();
-        $mail->Host = 'mail.cumhuriyet.edu.tr';
+        $mail->Host = '';
         $mail->SMTPAuth = true;
         $mail->Username = 'cemcir';
         $mail->Password = '12345'; // Şifrenizi veya uygulama şifresini girin
