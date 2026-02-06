@@ -23,15 +23,15 @@ function Send($alici)
         $mail->SMTPAuth = true;
 
         // Gmail account credentials
-        $mail->Username = 'enescemcir94@gmail.com'; // Gmail address
-        $mail->Password = '4C586060'; // Your Gmail App Password or actual Gmail password (if you have 2-step verification enabled, you need to use an app-specific password)
+        $mail->Username = 'cemcir'; // Gmail address
+        $mail->Password = '12345'; // Your Gmail App Password or actual Gmail password (if you have 2-step verification enabled, you need to use an app-specific password)
 
         // Set email encryption to TLS (the most commonly used)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Set the sender's email address and name
-        $mail->setFrom('enescemcir94@gmail.com', 'Mailer');
+        $mail->setFrom('cemcir', 'Mailer');
 
         // Add a recipient
         $mail->addAddress($alici, 'Recipient Name');  // Dynamic recipient address
