@@ -56,5 +56,5 @@ function Send($alici)
     }
 }
 
-Send('enescemcir1994@gmail.com');
+Send('');
 ?>
