@@ -27,7 +27,7 @@ class Mail
         $mail->setFrom('cemcir', 'Mailer');
         $mail->addAddress($receiver, 'Receiver Name');
         $mail->isHTML(true);
-        $mail->Subject = 'DUGUN SALONU OTOMASYONU';
+        $mail->Subject = 'DENEME';
         $mail->Body = 'Yeni Password ' .$password;
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
