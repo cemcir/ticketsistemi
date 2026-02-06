@@ -19,8 +19,8 @@ class Mail
         $mail->isSMTP();
         $mail->Host = 'mail.cumhuriyet.edu.tr';
         $mail->SMTPAuth = true;
-        $mail->Username = '2021304036@cumhuriyet.edu.tr';
-        $mail->Password = 'Enes.1907'; // Şifrenizi veya uygulama şifresini girin
+        $mail->Username = 'cemcir';
+        $mail->Password = '12345'; // Şifrenizi veya uygulama şifresini girin
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
